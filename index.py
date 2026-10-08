@@ -49,7 +49,7 @@ def get_session_path(session_name: str) -> str:
     return os.path.join(SESSIONS_DIR, f"{session_name}.json")
 
 
-@router.get("/patner/presets", summary="获取预设伴侣信息列表", response_model=ApiResponse)
+@router.get("/apipatner/presets", summary="获取预设伴侣信息列表", response_model=ApiResponse)
 async def get_presets() -> ApiResponse:
     async with session_factory() as session:
         result = await session.execute(select(AiPreset).order_by(AiPreset.sort_order.asc()))
@@ -57,7 +57,7 @@ async def get_presets() -> ApiResponse:
 
     return ApiResponse(code=200, message="伴侣预设模板文件加载成功~!", data=presets_list)
 
-@router.get("/patner/sessions", summary="获取会话列表", response_model=ApiResponse)
+@router.get("/apipatner/sessions", summary="获取会话列表", response_model=ApiResponse)
 async def list_sessions() -> ApiResponse:
     async with session_factory() as session:
         result = await session.execute(
@@ -66,7 +66,7 @@ async def list_sessions() -> ApiResponse:
         sessions_list = result.scalars().all()
     return ApiResponse(message="success", data=sessions_list)
         
-@router.get("/patner/sessions/{session_name}", summary="获取会话详情", response_model=ApiResponse)
+@router.get("/apipatner/sessions/{session_name}", summary="获取会话详情", response_model=ApiResponse)
 async def get_session(session_name: str) -> ApiResponse:
     async with session_factory() as session:
         result = await session.execute(select(AiSession).where(AiSession.session_name == session_name))
@@ -85,7 +85,7 @@ async def get_session(session_name: str) -> ApiResponse:
         ]
     return ApiResponse(message="success", data=session_data)
 
-@router.post("/patner/sessions", summary="创建会话", response_model=ApiResponse)
+@router.post("/apipatner/sessions", summary="创建会话", response_model=ApiResponse)
 async def create_session(request: CreateSessionRequest) -> ApiResponse:
     session_name = generate_session_name()
     now = datetime.now()
@@ -102,7 +102,7 @@ async def create_session(request: CreateSessionRequest) -> ApiResponse:
     return ApiResponse(message="success", data=session_name)
 
 
-@router.delete("/patner/sessions/{session_name}", summary="删除会话", response_model=ApiResponse)
+@router.delete("/apipatner/sessions/{session_name}", summary="删除会话", response_model=ApiResponse)
 async def delete_session(session_name: str) -> ApiResponse:
     async with session_factory() as session:
         await session.execute(delete(AiSession).where(AiSession.session_name == session_name))

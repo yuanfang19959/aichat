@@ -74,11 +74,11 @@ uv run python main.py
 
 | 方法 | 路径 | 说明 |
 | --- | --- | --- |
-| GET | `/patner/presets` | 人设预设列表 |
-| GET | `/patner/sessions` | 会话列表 |
-| POST | `/patner/sessions` | 创建会话，请求体为 `nick_name`、`nature` |
-| GET | `/patner/sessions/{session_name}` | 会话详情和历史消息 |
-| DELETE | `/patner/sessions/{session_name}` | 删除会话 |
-| POST | `/patner/chat` | 发送消息，请求体为 `nick_name`、`nature`、`message`、`session_name` |
+| GET | `/apipatner/presets` | 人设预设列表 |
+| GET | `/apipatner/sessions` | 会话列表 |
+| POST | `/apipatner/sessions` | 创建会话，请求体为 `nick_name`、`nature` |
+| GET | `/apipatner/sessions/{session_name}` | 会话详情和历史消息 |
+| DELETE | `/apipatner/sessions/{session_name}` | 删除会话 |
+| POST | `/apipatner/chat` | 发送消息，请求体为 `nick_name`、`nature`、`message`、`session_name` |
 
 聊天接口使用模型 `deepseek-v4-pro`。系统提示词只发给模型，不写入消息表。

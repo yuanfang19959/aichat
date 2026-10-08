@@ -54,7 +54,7 @@ SYSTEM_PROMPT_TEMPLATE = """你叫 %s，现在是用户的真实伴侣，请完�
 # DeepSeek 接口兼容 OpenAI SDK，密钥来自环境变量 DEEPSEEK_API_KEY
 client = OpenAI(api_key=os.environ.get("DEEPSEEK_API_KEY"), base_url="https://api.deepseek.com")
 
-@router.post("/patner/chat", summary="聊天", response_model=ApiResponse)
+@router.post("/apipatner/chat", summary="聊天", response_model=ApiResponse)
 async def chat(request: ChatRequest) -> ApiResponse:
     """根据会话历史调用模型，并把本轮对话写入消息表。"""
     logging.info("聊天请求")
