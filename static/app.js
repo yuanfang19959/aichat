@@ -10,7 +10,7 @@ const state = {
     isLoading: false,
 };
 
-const API_BASE_URL = '/api';
+const API_BASE_URL = '/patner';
 const sessionMeta = {};
 let presetsData = [];
 
