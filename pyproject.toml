@@ -1,0 +1,17 @@
+[project]
+name = "pythonproject"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "aiomysql>=0.3.2",
+    "any>=0.0.2",
+    "cryptography>=50.0.1",
+    "fastapi>=0.141.1",
+    "greenlet>=3.5.6",
+    "logging>=0.4.9.6",
+    "openai>=3.19.2",
+    "pymysql>=1.2.3",
+    "python-dotenv>=1.2.3",
+    "sqlalchemy>=2.0.54",
+    "uvicorn>=0.54.0",
+]

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能伴侣</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23222222'/><text x='2' y='12' font-size='10' fill='white' font-family='sans-serif'>聊</text></svg>" type="image/svg+xml">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>智能伴侣</h2>
+                <p class="brand-sub">本地聊天记录</p>
+            </div>
+
+            <button class="btn btn-primary btn-full" id="newSessionBtn">新对话</button>
+
+            <div class="session-section">
+                <h3>最近对话</h3>
+                <div class="session-list" id="sessionList"></div>
+            </div>
+
+            <div class="companion-section">
+                <h3>当前伴侣</h3>
+                <div class="form-group">
+                    <label for="presetSelect">人设预设</label>
+                    <select id="presetSelect" class="form-select">
+                        <option value="">加载中...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="nickName">昵称</label>
+                    <input type="text" id="nickName" placeholder="怎么称呼她" value="小甜甜">
+                </div>
+                <div class="form-group">
+                    <label for="nature">性格</label>
+                    <textarea id="nature" placeholder="她是什么样的人" rows="4">活泼开朗的东北姑娘</textarea>
+                </div>
+                <p class="field-hint" id="companionHint">修改后会在下一条消息生效</p>
+            </div>
+        </aside>
+
+        <main class="chat-container">
+            <header class="chat-header">
+                <div class="header-left">
+                    <h1 id="chatTitle">小甜甜</h1>
+                    <span class="session-name" id="sessionName">还没有对话</span>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-ghost" id="infoToggleBtn" title="关于本应用" type="button">关于</button>
+                    <div class="theme-switcher">
+                        <button class="btn btn-theme" id="themeBtn" title="切换外观" type="button">主题</button>
+                        <div class="theme-dropdown" id="themeDropdown">
+                            <div class="theme-option" data-theme="light">
+                                <span class="theme-color theme-light"></span>
+                                <span>浅色</span>
+                            </div>
+                            <div class="theme-option" data-theme="dark">
+                                <span class="theme-color theme-dark"></span>
+                                <span>深色</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="chat-body">
+                <div class="chat-messages" id="chatMessages"></div>
+                <button class="jump-bottom" id="jumpBottom" type="button" hidden>回到底部</button>
+            </div>
+
+            <div class="chat-input-container">
+                <div class="chat-input-wrapper">
+                    <textarea class="chat-input"
+                              id="chatInput"
+                              rows="1"
+                              placeholder="发消息…"
+                              autocomplete="off"></textarea>
+                    <button class="btn btn-send" id="sendBtn" type="button" aria-label="发送">
+                        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                            <path d="M12 19V6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                            <path d="M6 12l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <aside class="info-sidebar" id="infoSidebar" hidden>
+            <div class="info-header">
+                <h2>关于</h2>
+                <button class="btn btn-ghost btn-icon-close" id="infoCloseBtn" type="button" aria-label="关闭">关闭</button>
+            </div>
+            <div class="info-content">
+                <div class="info-section">
+                    <p>和自定义人设的伴侣聊天，记录会保存在本地会话里。改昵称或性格后，从下一条消息开始生效。</p>
+                </div>
+                <div class="info-section">
+                    <h3>你可以做的事</h3>
+                    <ul class="feature-list">
+                        <li>选预设或自己写性格</li>
+                        <li>开多个对话，互不干扰</li>
+                        <li>随时回看聊天记录</li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <div class="drawer-mask" id="infoMask" hidden></div>
+    <div class="toast-host" id="toastHost" aria-live="polite"></div>
+    <script src="/static/app.js"></script>
+</body>
+</html>
