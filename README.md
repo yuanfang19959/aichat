@@ -15,13 +15,10 @@
 
 ```
 DEEPSEEK_API_KEY=你的密钥
+MYSQL_PASSWORD=
 ```
 
-数据库连接写在 `db.py` 中，默认是：
-
-```
-mysql+aiomysql://root@localhost:3306/ai_partner_db
-```
+数据库仍连接本机 `root@localhost:3306/ai_partner_db`。本地 MySQL 没有密码时，`MYSQL_PASSWORD` 留空或不要写这一项。服务器上把 `MYSQL_PASSWORD` 设成数据库密码。密码只放在各自机器的 `.env` 里。
 
 先创建库和表：
 

@@ -1,10 +1,27 @@
+import os
 from datetime import datetime
-from sqlalchemy import Integer, String, DateTime
+from pathlib import Path
+
+from dotenv import load_dotenv
+from sqlalchemy import Integer, String, DateTime, URL
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 
+load_dotenv(Path(__file__).resolve().parent / ".env")
+
+# 本地不设 MYSQL_PASSWORD。服务器在 .env 中填写，特殊字符由 URL 负责转义。
+mysql_password = os.environ.get("MYSQL_PASSWORD") or None
+database_url = URL.create(
+    "mysql+aiomysql",
+    username="root",
+    password=mysql_password,
+    host="localhost",
+    port=3306,
+    database="ai_partner_db",
+)
+
 # 1. 创建引擎(支持异步操作)
-engine = create_async_engine("mysql+aiomysql://root@localhost:3306/ai_partner_db", echo=True)
+engine = create_async_engine(database_url, echo=True)
 
 # 2. 声明模型类
 class Base(DeclarativeBase):
